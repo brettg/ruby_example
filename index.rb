@@ -39,18 +39,14 @@ get '/plat' do
   HTML
 end
 
-get '/echo' do
-  <<-HTML
-    <pre>
-      #{system("echo", "*")}
-    </pre>
-  HTML
-end
-
 get '/ri' do
+  r, w = IO.pipe
+  pid = spawn('/usr/bin/ri', 'Kernel', out: w)
+  Process.wait pid
+  w.close
   <<-HTML
     <pre>
-      #{system("/usr/bin/ri", "Kernel")}
+      #{r.read}
     </pre>
   HTML
 end
