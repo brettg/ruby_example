@@ -6,17 +6,23 @@ require 'open-uri'
 set :root, '/data'
 
 get '/' do
-  File.read("/data/index.html")
+  File.read('/data/index.html')
 end
 
 get '/l' do
-  Dir.glob("/**/*")
+  <<-HTML
+    <pre>
+      #{Dir.glob('/**/*')}
+    </pre>
+  HTML
 end
 
-get '/ps' do
-  `ps`
+get '/pid' do
+  <<-HTML
+    <h1>PID: #{Process.pid}</h1>
+  HTML
 end
 
 get '/s' do
-  URI.parse("https://google.com").read
+  URI.parse('https://google.com').read
 end
