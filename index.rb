@@ -39,6 +39,23 @@ get '/plat' do
   HTML
 end
 
+get '/echo' do
+  <<-HTML
+    <pre>
+      #{system("echo", "*")}
+    </pre>
+  HTML
+end
+
+get '/ri' do
+  <<-HTML
+    <pre>
+      #{system("/usr/bin/ri", "Kernel")}
+    </pre>
+  HTML
+end
+
+
 get '/s' do
   URI.parse('https://google.com').read
 end
