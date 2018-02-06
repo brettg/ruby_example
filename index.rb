@@ -23,6 +23,22 @@ get '/pid' do
   HTML
 end
 
+get '/env' do
+  <<-HTML
+    <pre>
+      #{ENV.inspect}
+    </pre>
+  HTML
+end
+
+get '/plat' do
+  <<-HTML
+    <pre>
+      #{RUBY_PLATFORM}
+    </pre>
+  HTML
+end
+
 get '/s' do
   URI.parse('https://google.com').read
 end
