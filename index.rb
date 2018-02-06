@@ -13,6 +13,10 @@ get '/l' do
   Dir.glob("/**/*")
 end
 
+get '/ps' do
+  `ps`
+end
+
 get '/s' do
   URI.parse("https://google.com").read
 end
